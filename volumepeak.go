@@ -45,7 +45,7 @@ func GetVolumePeak(symbol string) (bool, error) {
 		return false, fmt.Errorf("error with parse previous volume in float64 from kline Binance, sd: {%v}, rd: {%s}, err: %s", url, string(data), err.Error())
 	}
 
-	if lastVolume/previousVolume >= 2.0 {
+	if (lastVolume/previousVolume >= 2.0 && lastVolume >= 1000.0) || (previousVolume >= 1200.0 && lastVolume >= 1200.0) {
 		return true, nil
 	} else {
 		return false, nil
